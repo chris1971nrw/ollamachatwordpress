@@ -1,18 +1,58 @@
 <?php
-// Dateiname: ollama-chat.php
+/**
+ * Plugin Name: Ollama Chat
+ * Plugin URI: https://example.com/ollama-chat
+ * Description: Integriert einen anpassbaren Chatbot, der auf der Ollama-Plattform basiert, direkt in Ihre WordPress-Seiten.
+ * Version: 10.3
+ * Author: Ihr Name
+ * Author URI: https://example.com
+ * License: GPL2
+ */
+
+// WICHTIG: Vermeidet den direkten Zugriff auf die Datei
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+// Lade CSS und JavaScript
+function ollama_chat_enqueue_assets() {
+    wp_enqueue_style('ollama-chat-style', plugin_dir_url(__FILE__) . 'assets/css/ollama-chat.css', [], '10.3');
+    wp_enqueue_script('ollama-chat-script', plugin_dir_url(__FILE__) . 'assets/js/ollama-chat.js', ['jquery'], '10.3', true);
+}
+add_action('wp_enqueue_scripts', 'ollama_chat_enqueue_assets');
+
+
+// Registriert das Einstellungsmenü für das Plugin
+function ollama_chat_add_admin_menu() {
+    add_options_page(
+        'Ollama Chat Einstellungen',
+        'Ollama Chat',
+        'manage_options',
+        'ollama-chat-settings',
+        'ollama_chat_settings_page'
+    );
+}
+add_action('admin_menu', 'ollama_chat_add_admin_menu');
+
+// Rendert die Einstellungsseite
+function ollama_chat_settings_page() {
+    // Hier würde der HTML-Code für die Einstellungsseite stehen
+    ?>
+    <div class="wrap">
+        <h1>Ollama Chat Einstellungen</h1>
+        <p>Hier können Sie die API-URL, das Modell und weitere Optionen konfigurieren.</p>
+        <!-- Formular zum Speichern der Einstellungen -->
+    </div>
+    <?php
+}
 
 // Shortcode-Handler für [ollama_chat]
 function ollama_chat_shortcode_handler($atts) {
     // Attributes handling, etc.
 
-    // CSS und JS für das direkt eingebettete Interface laden
-    wp_enqueue_style('ollama-chat-style');
-    wp_enqueue_script('ollama-chat-script');
-
     // Das Chat-Interface als HTML-String zurückgeben
     return '<div id="ollama-chat-container" class="ollama-chat-embedded"></div>';
 }
-
 add_shortcode('ollama_chat', 'ollama_chat_shortcode_handler');
 ?>
 ```javascript
@@ -21,10 +61,6 @@ add_shortcode('ollama_chat', 'ollama_chat_shortcode_handler');
 // Funktion, um das Chat-Interface in das HTML-Element zu rendern
 function renderChatInterface(container) {
     // Generiert das gesamte HTML-Markup für das Chat-Interface
-    // und fügt es in das übergebene container-Element ein.
-    // Das vorherige modale Overlay und der Button zum Öffnen werden entfernt.
-
-    // Beispielhafte Struktur des Chat-Interfaces
     const chatHtml = `
         <div class="chat-header">Ollama Chat</div>
         <div class="chat-messages"></div>
@@ -35,11 +71,6 @@ function renderChatInterface(container) {
     `;
 
     container.innerHTML = chatHtml;
-
-    // Fügen Sie hier die Logik für die Größenanpassung hinzu
-    // Mit CSS flexbox oder grid kann die Größenanpassung über das
-    // Elternelement gesteuert werden.
-    // Beispiel: .ollama-chat-embedded { width: 100%; height: 500px; }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -54,14 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* Stile für das eingebettete Chat-Fenster */
 .ollama-chat-embedded {
-    /* Grundlegende Stil-Anpassungen für das eingebettete Chat-Fenster */
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Flexbox für die automatische Größenanpassung im übergeordneten Element */
     display: flex;
     flex-direction: column;
-    /* Ermöglicht das Anpassen der Höhe über das Elternelement */
     height: 100%;
 }
 
@@ -71,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 .ollama-chat-embedded .chat-messages {
-    flex-grow: 1; /* Nimmt den restlichen Platz ein */
+    flex-grow: 1;
     overflow-y: auto;
     /* ... */
 }
