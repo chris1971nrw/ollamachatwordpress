@@ -78,6 +78,20 @@ Optional können Sie eine Persona definieren:
 
 Changelog
 
+
+
+v10.2
+
+
+
+Hinzugefügt: Direkte Einbettung des Chat-Interfaces auf der Seite.
+
+
+
+Verbessert: Das Chat-Fenster passt sich nun automatisch an die Größe des übergeordneten HTML-Elements an.
+
+
+
 v10.1
 
 
