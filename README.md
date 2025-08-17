@@ -78,6 +78,18 @@ Optional können Sie eine Persona definieren:
 
 Changelog
 
+v10.1
+
+
+
+Behoben: Vollständige Konfigurationsseite im Admin-Dashboard hinzugefügt.
+
+
+
+Behoben: Logik der Wissensbasis erklärt.
+
+
+
 v10.0
 
 

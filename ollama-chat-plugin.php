@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Ollama Chat Plugin
  * Description: Ein einfacher Chatbot, der mithilfe von Ollama auf den Inhalt der WordPress-Seite antwortet.
- * Version: 10.0
- * Author: Ihr Name
+ * Version: 10.1
+ * Author: Christoph Reuter
  */
 
 // Sicherheit: Direkten Zugriff auf die Datei verhindern.
@@ -218,7 +218,8 @@ function ollama_chat_check_connection($api_url) {
 function ollama_chat_settings_page() {
     ?>
     <div class="wrap">
-        <h2>Ollama Chat Einstellungen</h2>
+        <h1>Ollama Chat Einstellungen</h1>
+        <p>Konfigurieren Sie die Verbindung zu Ihrer Ollama-Instanz und passen Sie die Chat-Funktionalität an.</p>
         <form method="post" action="options.php">
             <?php
             settings_fields('ollama-chat-group');
@@ -238,8 +239,8 @@ function ollama_chat_settings_page() {
  * Funktion zum Einbinden der JavaScript- und CSS-Dateien.
  */
 function ollama_chat_enqueue_scripts() {
-    wp_enqueue_style('ollama-chat-style', plugin_dir_url(__FILE__) . 'css/style.css', array(), '10.0');
-    wp_enqueue_script('ollama-chat-script', plugin_dir_url(__FILE__) . 'js/chat-app.js', array('jquery'), '10.0', true);
+    wp_enqueue_style('ollama-chat-style', plugin_dir_url(__FILE__) . 'css/style.css', array(), '10.1');
+    wp_enqueue_script('ollama-chat-script', plugin_dir_url(__FILE__) . 'js/chat-app.js', array('jquery'), '10.1', true);
 
     // Sammeln der Starter-Prompts.
     $starter_prompts = array();
@@ -422,4 +423,3 @@ function ollama_chat_handle_stream_request() {
 }
 add_action('wp_ajax_ollama_chat_request', 'ollama_chat_handle_stream_request');
 add_action('wp_ajax_nopriv_ollama_chat_request', 'ollama_chat_handle_stream_request');
-
