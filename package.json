@@ -1,0 +1,11 @@
+{
+  "name": "ollama-chat-plugin",
+  "version": "10.0.0",
+  "description": "Ein Chatbot-Plugin für WordPress, das Ollama für die RAG-basierte Kommunikation nutzt.",
+  "main": "ollama-chat-plugin.php",
+  "author": "Christoph Reuter",
+  "private": true,
+  "scripts": {
+    "start": "echo 'Dieses Plugin wird direkt in WordPress verwendet. Es gibt keine Build-Skripte.'"
+  }
+}
