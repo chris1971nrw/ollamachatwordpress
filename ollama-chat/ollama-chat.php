@@ -3,7 +3,7 @@
  * Plugin Name: Ollama Chat
  * Plugin URI: https://example.com/ollama-chat
  * Description: Integriert einen anpassbaren Chatbot, der auf der Ollama-Plattform basiert, direkt in Ihre WordPress-Seiten.
- * Version: 10.3
+ * Version: 10.4
  * Author: Ihr Name
  * Author URI: https://example.com
  * License: GPL2
@@ -16,8 +16,9 @@ if (!defined('ABSPATH')) {
 
 // Lade CSS und JavaScript
 function ollama_chat_enqueue_assets() {
-    wp_enqueue_style('ollama-chat-style', plugin_dir_url(__FILE__) . 'assets/css/ollama-chat.css', [], '10.3');
-    wp_enqueue_script('ollama-chat-script', plugin_dir_url(__FILE__) . 'assets/js/ollama-chat.js', ['jquery'], '10.3', true);
+    // Korrekte Pfade zu den Assets sicherstellen
+    wp_enqueue_style('ollama-chat-style', plugins_url('assets/css/ollama-chat.css', __FILE__), [], '10.4');
+    wp_enqueue_script('ollama-chat-script', plugins_url('assets/js/ollama-chat.js', __FILE__), ['jquery'], '10.4', true);
 }
 add_action('wp_enqueue_scripts', 'ollama_chat_enqueue_assets');
 
